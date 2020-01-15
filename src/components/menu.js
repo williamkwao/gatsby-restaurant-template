@@ -1,0 +1,97 @@
+import React from "react"
+import styled from "styled-components"
+
+const menuData = [
+  {
+    price: "$25.99",
+    name: "Grilled Beef with potatoes",
+    description: "Meat / Potatoes / Rice / Tomatoes",
+  },
+  {
+    price: "$25.99",
+    name: "Grilled Beef with potatoes",
+    description: "Meat / Potatoes / Rice / Tomatoes",
+  },
+  {
+    price: "$25.99",
+    name: "Grilled Beef with potatoes",
+    description: "Meat / Potatoes / Rice / Tomatoes",
+  },
+  {
+    price: "$25.99",
+    name: "Grilled Beef with potatoes",
+    description: "Meat / Potatoes / Rice / Tomatoes",
+  },
+]
+const MenuStyles = styled.div`
+  padding-top: 40px;
+  color: #404044;
+  .menu-title-block {
+    text-align: center;
+    .menu-title {
+      font-family: Lora;
+    }
+    p {
+      color: #7d7d7d;
+    }
+  }
+
+  .menu-item {
+    .price {
+      font-size: 24px;
+      color: #404044;
+      font-family: "Lora", Georgia, serif;
+      margin: 0px;
+    }
+    .name {
+      margin: 10px 0 10px 0;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .description {
+      color: #7d7d7d;
+      font-size: 14px;
+      margin-bottom: 1.5em;
+      font-weight: 400;
+      font-family: "Poppins", Arial, sans-serif;
+    }
+  }
+
+  .menu-items-block {
+    max-width: 800px;
+    margin: 15px auto;
+    .menu-item {
+      max-width: 300px;  
+      margin: auto;
+    }
+    @media (min-width: 1025px) {
+      display: grid;
+      grid-template-columns: 50% 50%;
+    }
+  }
+`
+const Menu = () => {
+  return (
+    <MenuStyles>
+      <div className="menu-title-block">
+        <h2 className="menu-title">Our Delicious Menu</h2>
+        <p>
+          You have to enjoy the best food that money can buy all over the world
+        </p>
+      </div>
+      <div className="menu-items-block">
+        {menuData.map((data, index) => {
+          return (
+            <div className="menu-item" key={index}>
+              <p className="price">{data.price}</p>
+              <p className="name">{data.name}</p>
+              <p className="description">{data.description}</p>
+            </div>
+          )
+        })}
+      </div>
+    </MenuStyles>
+  )
+}
+
+export default Menu
