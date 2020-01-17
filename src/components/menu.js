@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 
 const menuData = [
@@ -21,6 +21,20 @@ const menuData = [
     price: "$25.99",
     name: "Grilled Beef with potatoes",
     description: "Meat / Potatoes / Rice / Tomatoes",
+  },
+]
+const categories = [
+  {
+    title: "Main",
+    items: menuData,
+  },
+  {
+    title: "Desserts",
+    items: menuData,
+  },
+  {
+    title: "Drinks",
+    items: menuData,
   },
 ]
 const MenuStyles = styled.div`
@@ -61,7 +75,7 @@ const MenuStyles = styled.div`
     max-width: 800px;
     margin: 15px auto;
     .menu-item {
-      max-width: 300px;  
+      max-width: 300px;
       margin: auto;
     }
     @media (min-width: 1025px) {
@@ -69,8 +83,42 @@ const MenuStyles = styled.div`
       grid-template-columns: 50% 50%;
     }
   }
+
+  .menu-category {
+    margin: auto;
+    max-width: 800px;
+    text-align: center;
+    ul {
+      margin: auto;
+      li {
+        list-style: none;
+        display: inline-block;
+        margin: 20px;
+        position: relative;
+        a,
+        a:visited {
+          text-decoration: none;
+          color: #404044 !important;
+        }
+      }
+
+      li.active a:after {
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        right: 0;
+        content: "";
+        width: 100%;
+        height: 2px;
+        background: #ff6107;
+        margin: 0 auto;
+      }
+    }
+  }
 `
 const Menu = () => {
+  const [menuCategory, setCategory] = useState("Main")
+
   return (
     <MenuStyles>
       <div className="menu-title-block">
@@ -78,6 +126,28 @@ const Menu = () => {
         <p>
           You have to enjoy the best food that money can buy all over the world
         </p>
+      </div>
+      <div className="menu-category">
+        <ul>
+          {categories.map((category, index) => {
+            return (
+              <li
+                key={index}
+                className={menuCategory === category.title ? "active" : ""}
+              >
+                <a
+                  href={`#${category.title}`}
+                  onClick={e => {
+                    e.preventDefault()
+                    setCategory(category.title)
+                  }}
+                >
+                  {category.title}
+                </a>
+              </li>
+            )
+          })}
+        </ul>
       </div>
       <div className="menu-items-block">
         {menuData.map((data, index) => {
