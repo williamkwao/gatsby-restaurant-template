@@ -30,7 +30,7 @@ const categories = [
   },
   {
     title: "Desserts",
-    items: menuData,
+    items: [menuData[0]],
   },
   {
     title: "Drinks",
@@ -38,6 +38,7 @@ const categories = [
   },
 ]
 const MenuStyles = styled.div`
+  min-height: 100vh;
   padding-top: 40px;
   color: #404044;
   .menu-title-block {
@@ -116,8 +117,8 @@ const MenuStyles = styled.div`
     }
   }
 `
-const Menu = () => {
-  const [menuCategory, setCategory] = useState("Main")
+const MenuComponent = () => {
+  const [currentCategory, setCurrentCategory] = useState(categories[0])
 
   return (
     <MenuStyles>
@@ -133,13 +134,15 @@ const Menu = () => {
             return (
               <li
                 key={index}
-                className={menuCategory === category.title ? "active" : ""}
+                className={
+                  currentCategory.title === category.title ? "active" : ""
+                }
               >
                 <a
                   href={`#${category.title}`}
                   onClick={e => {
                     e.preventDefault()
-                    setCategory(category.title)
+                    setCurrentCategory(category)
                   }}
                 >
                   {category.title}
@@ -150,7 +153,7 @@ const Menu = () => {
         </ul>
       </div>
       <div className="menu-items-block">
-        {menuData.map((data, index) => {
+        {currentCategory.items.map((data, index) => {
           return (
             <div className="menu-item" key={index}>
               <p className="price">{data.price}</p>
@@ -164,4 +167,4 @@ const Menu = () => {
   )
 }
 
-export default Menu
+export default MenuComponent

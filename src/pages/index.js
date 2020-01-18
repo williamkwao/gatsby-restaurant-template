@@ -6,7 +6,7 @@ import Image from "../components/image"
 import SEO from "../components/seo"
 import styled from "styled-components"
 import landingImg from "../images/landingimage.jpg"
-import Menu from "../components/menu"
+import MenuComponent from "../components/menu"
 
 const ActionButton = styled.button`
   background: #ff6107;
@@ -81,7 +81,9 @@ const IndexPage = () => (
             Authentic food sourced from the best location with advanced non GMO
             methods
           </p>
-          <ActionButton>View our menu</ActionButton>
+          <Link to="/menu">
+            <ActionButton>View our menu</ActionButton>
+          </Link>
         </div>
       </div>
       <div className="res-info">
@@ -102,9 +104,8 @@ const IndexPage = () => (
           <p>info@domain.com luto@email.com</p>
         </div>
       </div>
-      <Menu/>
+      <MenuComponent />
     </HomeStyles>
-
   </Layout>
 )
 
