@@ -17,7 +17,7 @@ const HeaderStyles = styled.header`
   position: absolute;
   z-index: 150;
   vertical-align: middle;
-  a{
+  a {
     color: #fff;
     text-decoration: none;
   }
@@ -91,6 +91,10 @@ var HeaderMenu = props => {
   const navMenuItems = [
     { text: "Home", link: "/" },
     { text: "Menu", link: "/menu" },
+    {
+      text: "About",
+      link: "/about",
+    },
   ]
   return (
     <HeaderMenuStyles open={props.open}>
