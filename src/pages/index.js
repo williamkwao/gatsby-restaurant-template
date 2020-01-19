@@ -21,7 +21,7 @@ const IndexPage = () => (
     <HomeStyles>
       <div className="landing">
         <div className="landing-box">
-          <h2>We serve good food</h2>
+          <h2>We Serve Good Food</h2>
           <p>
             Authentic food sourced from the best location with advanced non GMO
             methods
@@ -150,12 +150,21 @@ var HomeStyles = styled.div`
     background-size: cover;
     background-repeat: no-repeat;
     color: #fff;
-
+    .landing-box {
+      max-width: 550px;
+      p {
+        font-style: normal;
+        line-height: 29px;
+        font-size: 16px;
+        font-weight: 400;
+      }
+    }
     h2 {
       font-family: Lora;
       font-weight: 400;
       font-style: normal;
-      font-size: 38px;
+      font-size: 44px;
+      line-height: 57px;
     }
   }
   .res-info {
