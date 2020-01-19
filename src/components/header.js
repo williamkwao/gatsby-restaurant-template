@@ -15,14 +15,18 @@ const HeaderStyles = styled.header`
   justify-content: space-between;
   padding: 20px 15px;
   position: absolute;
-  z-index: 100;
+  z-index: 150;
   vertical-align: middle;
+  a{
+    color: #fff;
+    text-decoration: none;
+  }
 `
 
 const HeaderMenuStyles = styled.div`
   position: fixed;
   min-width: 100%;
-  z-index: 100;
+  z-index: 150;
   min-height: 100vh;
   height: 100%;
   color: #fff;
@@ -63,7 +67,9 @@ const Header = ({ siteTitle }) => {
   return (
     <Fragment>
       <HeaderStyles>
-        <h4>Restaurant Name</h4>
+        <Link to="/">
+          <h4>Restaurant Name</h4>
+        </Link>
         <img
           src={HamburgerIcon}
           onClick={() => {
