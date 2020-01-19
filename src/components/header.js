@@ -1,8 +1,8 @@
-import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import React from "react"
+import React, { useState, Fragment } from "react"
 import styled from "styled-components"
 import { ReactSVG } from "react-svg"
+import { Link } from "gatsby"
 
 import HamburgerIcon from "../images/hamburger.svg"
 
@@ -18,12 +18,91 @@ const HeaderStyles = styled.header`
   z-index: 100;
   vertical-align: middle;
 `
-const Header = ({ siteTitle }) => (
-  <HeaderStyles>
-    <h4>Restaurant Name</h4>
-    <img src={HamburgerIcon}></img>
-  </HeaderStyles>
-)
+
+const HeaderMenuStyles = styled.div`
+  position: fixed;
+  min-width: 100%;
+  z-index: 100;
+  min-height: 100vh;
+  height: 100%;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: ${props => (props.open ? "visible" : "hidden")};
+  opacity: ${props => (props.open ? 1 : 0)};
+  transition: visibility 0.5s, opacity 0.5s linear;
+
+  .close-btn {
+    position: absolute;
+    align-self: flex-start;
+    right: 0;
+    margin-right: 24px;
+    margin-top: 24px;
+  }
+  ul {
+    list-style: none;
+    text-align: center;
+    margin: auto;
+    li {
+      font-family: "Poppins", Arial, sans-serif;
+      font-size: 26px;
+      margin-bottom: 26px;
+
+      a {
+        text-decoration: none;
+        color: #fff;
+      }
+    }
+  }
+`
+const Header = ({ siteTitle }) => {
+  const [menuToggle, setMenuToggle] = useState(false)
+
+  return (
+    <Fragment>
+      <HeaderStyles>
+        <h4>Restaurant Name</h4>
+        <img
+          src={HamburgerIcon}
+          onClick={() => {
+            console.log(menuToggle, "this")
+            setMenuToggle(!menuToggle)
+          }}
+        ></img>
+      </HeaderStyles>
+
+      <HeaderMenu
+        onClose={() => setMenuToggle(!menuToggle)}
+        open={menuToggle}
+      />
+    </Fragment>
+  )
+}
+
+var HeaderMenu = props => {
+  const navMenuItems = [
+    { text: "Home", link: "/" },
+    { text: "Menu", link: "/menu" },
+  ]
+  return (
+    <HeaderMenuStyles open={props.open}>
+      <h2 className="close-btn" onClick={props.onClose}>
+        X
+      </h2>
+      <ul>
+        {navMenuItems.map((menuItem, index) => {
+          return (
+            <li onClick={props.onClose}>
+              <Link to={menuItem.link}>{menuItem.text}</Link>
+            </li>
+          )
+        })}
+      </ul>
+    </HeaderMenuStyles>
+  )
+}
 
 Header.propTypes = {
   siteTitle: PropTypes.string,
