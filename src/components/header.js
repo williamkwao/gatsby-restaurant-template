@@ -100,7 +100,7 @@ var HeaderMenu = props => {
       <ul>
         {navMenuItems.map((menuItem, index) => {
           return (
-            <li onClick={props.onClose}>
+            <li onClick={props.onClose} key={index}>
               <Link to={menuItem.link}>{menuItem.text}</Link>
             </li>
           )

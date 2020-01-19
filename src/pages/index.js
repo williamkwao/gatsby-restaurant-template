@@ -8,6 +8,13 @@ import styled from "styled-components"
 import landingImg from "../images/landingimage.jpg"
 import MenuComponent from "../components/menu"
 import chefImage from "../images/chef.jpg"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+  faMapMarkerAlt,
+  faClock,
+  faPhone,
+  faEnvelope,
+} from "@fortawesome/free-solid-svg-icons"
 
 const IndexPage = () => (
   <Layout>
@@ -26,18 +33,22 @@ const IndexPage = () => (
       </div>
       <div className="res-info">
         <div className="res-info-item">
+          <FontAwesomeIcon icon={faMapMarkerAlt} />
           <h3 className="title">Address</h3>
           <p>98 West 21th Street, Suite 721 New York NY 10016</p>
         </div>
         <div className="res-info-item">
+          <FontAwesomeIcon icon={faClock} />
           <h3 className="title">Opening Time</h3>
           <p>Monday - Sunday 8am - 9pm</p>
         </div>
         <div className="res-info-item">
+          <FontAwesomeIcon icon={faPhone} />
           <h3 className="title">Phone</h3>
           <p>+ 001 234 567 + 001 234 567</p>
         </div>
         <div className="res-info-item">
+          <FontAwesomeIcon icon={faEnvelope} />
           <h3 className="title">Email</h3>
           <p>info@domain.com luto@email.com</p>
         </div>
@@ -153,11 +164,16 @@ var HomeStyles = styled.div`
     background-color: #302939;
     text-align: center;
     .res-info-item {
+      svg {
+        height: 24px;
+        margin-bottom: 4px;
+      }
       .title {
         font-weight: 500;
-        line-height: 1.1;
+        line-height: 18px;
         font-size: 16px;
         margin-bottom: 15px;
+        font-family: Lora, Georgia, serif;
       }
       p {
         color: rgba(255, 255, 255, 0.6);
