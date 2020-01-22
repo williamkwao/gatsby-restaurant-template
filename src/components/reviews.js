@@ -63,7 +63,7 @@ const ReviewsStyles = styled.div`
 const Reviews = () => {
   return (
     <ReviewsStyles>
-      <h2>What People Say</h2>
+      <h2>What Our Customers Say</h2>
       <div className="slider-contaner">
         <Slider {...settings}>
           {reviewsData.map((review, index) => {
