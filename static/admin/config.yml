@@ -6,8 +6,8 @@ public_folder: /img
 
 collections:
 - name: 'homePage'
-    label: 'Home Page'
-    files:
+  label: 'Home Page'
+  files:
     - file: 'src/content/landing-content.md'
         label: 'Landing Page Text'
         name: 'landingText'
