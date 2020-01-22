@@ -15,6 +15,7 @@ import {
   faPhone,
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons"
+import Reviews from "../components/reviews"
 
 const IndexPage = () => (
   <Layout>
@@ -67,6 +68,9 @@ const IndexPage = () => (
           <img src={chefImage}></img>
         </div>
       </AboutSection>
+      <section>
+        <Reviews />
+      </section>
       <MenuComponent />
     </HomeStyles>
   </Layout>
