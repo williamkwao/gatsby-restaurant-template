@@ -9,8 +9,8 @@ collections:
   label: 'Home Page'
   files:
     - file: 'src/content/landing-content.md'
-        label: 'Landing Page Text'
-        name: 'landingText'
+      label: 'Landing Page'
+      name: 'landingPage'
         fields:
         - { label: 'Landing Heading', name: landingHeading, widget: string }
         - { label: 'Landing subtext', name: 'landingSubtext', widget: string }
