@@ -11,7 +11,7 @@ collections:
     - file: 'src/content/landing-content.md'
       label: 'Landing Page'
       name: 'landingPage'
-        fields:
+      fields:
         - { label: 'Landing Heading', name: landingHeading, widget: string }
         - { label: 'Landing subtext', name: 'landingSubtext', widget: string }
   
