@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import Image from "../components/image"
@@ -17,64 +17,65 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 import Reviews from "../components/reviews"
 
-const IndexPage = () => (
-  <Layout>
-    <HomeStyles>
-      <div className="landing">
-        <div className="landing-box">
-          <h2>We Serve Good Food</h2>
-          <p>
-            Authentic food sourced from the best location with advanced non GMO
-            methods
-          </p>
-          <Link to="/menu">
-            <ActionButton>View our menu</ActionButton>
-          </Link>
+const IndexPage = props => {
+  const landingContent = props.data.landingContent.frontmatter
+
+  return (
+    <Layout>
+      <HomeStyles>
+        <div className="landing">
+          <div className="landing-box">
+            <h2>{landingContent.landingHeading}</h2>
+            <p>{landingContent.landingSubtext}</p>
+            <Link to="/menu">
+              <ActionButton>View our menu</ActionButton>
+            </Link>
+          </div>
         </div>
-      </div>
-      <div className="res-info">
-        <div className="res-info-item">
-          <FontAwesomeIcon icon={faMapMarkerAlt} />
-          <h3 className="title">Address</h3>
-          <p>98 West 21th Street, Suite 721 New York NY 10016</p>
+        <div className="res-info">
+          <div className="res-info-item">
+            <FontAwesomeIcon icon={faMapMarkerAlt} />
+            <h3 className="title">Address</h3>
+            <p>98 West 21th Street, Suite 721 New York NY 10016</p>
+          </div>
+          <div className="res-info-item">
+            <FontAwesomeIcon icon={faClock} />
+            <h3 className="title">Opening Time</h3>
+            <p>Monday - Sunday 8am - 9pm</p>
+          </div>
+          <div className="res-info-item">
+            <FontAwesomeIcon icon={faPhone} />
+            <h3 className="title">Phone</h3>
+            <p>+ 001 234 567 + 001 234 567</p>
+          </div>
+          <div className="res-info-item">
+            <FontAwesomeIcon icon={faEnvelope} />
+            <h3 className="title">Email</h3>
+            <p>info@domain.com luto@email.com</p>
+          </div>
         </div>
-        <div className="res-info-item">
-          <FontAwesomeIcon icon={faClock} />
-          <h3 className="title">Opening Time</h3>
-          <p>Monday - Sunday 8am - 9pm</p>
-        </div>
-        <div className="res-info-item">
-          <FontAwesomeIcon icon={faPhone} />
-          <h3 className="title">Phone</h3>
-          <p>+ 001 234 567 + 001 234 567</p>
-        </div>
-        <div className="res-info-item">
-          <FontAwesomeIcon icon={faEnvelope} />
-          <h3 className="title">Email</h3>
-          <p>info@domain.com luto@email.com</p>
-        </div>
-      </div>
-      <AboutSection>
-        <div className="text-section">
-          <h3>Welcome to Alo Vietnam</h3>
-          <h2>Authenthic taste of Vietnam in Herndon</h2>
-          <p>
-            Far far away, behind the word mountains, far from the countries
-            Vokalia and Consonantia, there live the blind texts. Separated they
-            live in Bookmarksgrove right at the coast of the Semantics.
-          </p>
-        </div>
-        <div className="img-div">
-          <img src={chefImage}></img>
-        </div>
-      </AboutSection>
-      <section>
-        <Reviews />
-      </section>
-      <MenuComponent />
-    </HomeStyles>
-  </Layout>
-)
+        <AboutSection>
+          <div className="text-section">
+            <h3>Welcome to Alo Vietnam</h3>
+            <h2>Authenthic taste of Vietnam in Herndon</h2>
+            <p>
+              Far far away, behind the word mountains, far from the countries
+              Vokalia and Consonantia, there live the blind texts. Separated
+              they live in Bookmarksgrove right at the coast of the Semantics.
+            </p>
+          </div>
+          <div className="img-div">
+            <img src={chefImage}></img>
+          </div>
+        </AboutSection>
+        <section>
+          <Reviews />
+        </section>
+        <MenuComponent />
+      </HomeStyles>
+    </Layout>
+  )
+}
 
 var AboutSection = styled.section`
   padding: 60px 15px;
@@ -196,6 +197,19 @@ var HomeStyles = styled.div`
     @media (min-width: 1025px) {
       display: grid;
       grid-template-columns: 25% 25% 25% 25%;
+    }
+  }
+`
+
+export const query = graphql`
+  query {
+    landingContent: markdownRemark(
+      fileAbsolutePath: { regex: "/landing-content.md/" }
+    ) {
+      frontmatter {
+        landingHeading
+        landingSubtext
+      }
     }
   }
 `
